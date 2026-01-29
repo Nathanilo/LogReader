@@ -84,4 +84,12 @@ public class LogEvent extends EventObject implements ILogEvent {
     public int getLatency() {
         return latency;
     }
+
+    @Override
+    public String toString() {
+        return String.format(
+                "[%1$tF %1$tT] %2$s user=%3$s operation=%4$s resource=%5$s status=%6$s latency=%7$dms node=%8$s",
+                date, priority, user, operation, resource, status, latency, node
+        );
+    }
 }

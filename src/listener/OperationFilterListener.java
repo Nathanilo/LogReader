@@ -3,6 +3,7 @@ package listener;
 import event.ILogEvent;
 import model.Operation;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
@@ -12,7 +13,15 @@ public class OperationFilterListener implements ILogListener{
 
     public OperationFilterListener(Operation operation, String outputFile) {
         this.operation = operation;
-        this.outputFile = outputFile;
+
+        //Check if output folder exists / create
+        File folder = new File("output");
+        if (!folder.exists()) {
+            folder.mkdir();
+        }
+
+        // Prepend folder to file name
+        this.outputFile = "output/" + outputFile;
     }
 
     @Override

@@ -2,6 +2,7 @@ package listener;
 
 import event.ILogEvent;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
@@ -12,7 +13,14 @@ public class UserFilterListener implements ILogListener {
 
     public UserFilterListener(String user, String outputFile) {
         this.user = user;
-        this.outputFile = outputFile;
+
+        // Ensure output folder exists
+        File folder = new File("output");
+        if (!folder.exists()) {
+            folder.mkdir();
+        }
+
+        this.outputFile = "output/" + outputFile;
     }
 
     @Override
