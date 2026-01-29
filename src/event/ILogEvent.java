@@ -1,6 +1,7 @@
 package event;
 import model.Operation;
 import model.Priority;
+import model.Status;
 
 import java.util.Date;
 
@@ -15,7 +16,7 @@ public interface ILogEvent {
     Priority getPriority();
     String getNode();
     String getResource();
-    String getStatus();
+    Status getStatus();
     int getLatency();
 
 }
