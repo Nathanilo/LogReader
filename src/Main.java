@@ -1,6 +1,7 @@
 import generator.LogGenerator;
 import listener.*;
 import model.*;
+import parser.LogParser;
 
 import java.util.Date;
 
@@ -22,13 +23,8 @@ public class Main {
         userLogger.register(gen);
         tracker.register(gen);
 
-        gen.createLogEvent(new Date(), "user01", Operation.READ,
-                Priority.INFO, "node01", "/api/test", Status.SUCCESS, 120);
-
-        gen.createLogEvent(new Date(), "user02", Operation.WRITE,
-                Priority.ERROR, "node02", "/data/output.json", Status.ERROR, 45);
-
-        gen.createLogEvent(new Date(), "user01", Operation.READ,
-                Priority.INFO, "node01", "/api/test", Status.SUCCESS, 90);
+        // Parse log file and generate events
+        LogParser parser = new LogParser("logs/application.log", gen);
+        parser.parseAndGenerateEvents();
     }
 }
