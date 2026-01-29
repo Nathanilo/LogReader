@@ -68,11 +68,31 @@ public class LogGenerator implements ILogGenerator {
         }
     }
 
-//    @Override
-//    public void createLogEvent(Object... attributes) {
-//        // parse + validation
-//        createLogEvent(parsedDate, parsedUser, ...);
-//    }
+    @Override
+    public void createLogEvent(Object... attributes) {
 
+        if (attributes == null || attributes.length != 8) {
+            throw new IllegalArgumentException(
+                    "Expected attributes: Date, User, Operation, Priority, Node, Resource, Status, Latency"
+            );
+        }
 
+        try {
+            createLogEvent(
+                    (java.util.Date) attributes[0],
+                    (String) attributes[1],
+                    (model.Operation) attributes[2],
+                    (model.Priority) attributes[3],
+                    (String) attributes[4],
+                    (String) attributes[5],
+                    (model.Status) attributes[6],
+                    (int) attributes[7]
+            );
+        } catch (ClassCastException e) {
+            throw new IllegalArgumentException(
+                    "Invalid attribute types provided",
+                    e
+            );
+        }
+    }
 }

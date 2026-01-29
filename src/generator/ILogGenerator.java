@@ -31,6 +31,6 @@ public interface ILogGenerator {
             int latency
     );
 
-//    // List / Varargs-based (flexible)
-//    void createLogEvent(Object... attributes);
+    // List / Varargs-based (flexible)
+    void createLogEvent(Object... attributes);
 }
