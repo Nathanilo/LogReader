@@ -1,6 +1,7 @@
 package listener;
 
 import event.ILogEvent;
+import generator.ILogGenerator;
 
 /**
  * Interface defining a log listener.
@@ -9,6 +10,10 @@ import event.ILogEvent;
 
 public interface ILogListener {
     void logAction(ILogEvent logEvent);
-    void register();
-    void unregister();
+    default void register(ILogGenerator generator){
+        generator.register(this);
+    };
+    default void unregister(ILogGenerator generator) {
+        generator.unregister(this);
+    }
 }
