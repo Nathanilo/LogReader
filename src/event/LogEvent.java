@@ -10,7 +10,7 @@ import model.Status;
 
 /**
  * LogEvent represents a single log entry as an immutable event -
- * It represent past actions and should not be modified by listeners once created..
+ * It represent past actions and should not be modified by listeners once created.
  */
 
 public class LogEvent extends EventObject implements ILogEvent {

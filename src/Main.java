@@ -10,13 +10,16 @@ public class Main {
 
         LogGenerator gen = LogGenerator.getOrCreate();
 
+        //Operation Filters
         ILogListener readLogger = new OperationFilterListener(Operation.READ, "read.log");
         ILogListener writeLogger  = new OperationFilterListener(Operation.WRITE, "write.log");
         ILogListener updateLogger = new OperationFilterListener(Operation.UPDATE, "update.log");
         ILogListener deleteLogger = new OperationFilterListener(Operation.DELETE, "delete.log");
 
-        ILogListener userLogger = new UserFilterListener("user01", "user01.log");
+       // Filter logs by user e.g. filter all logs by user17
+        ILogListener userLogger = new UserFilterListener("user17", "user.log");
 
+        // Track operation happening every interval
         ILogListener tracker = new TrackerListener(3);
 
         readLogger.register(gen);
